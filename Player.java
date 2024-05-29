@@ -49,14 +49,17 @@ public class Player {
     }
 
     public void plantBeanCard(Field field, BeanCard card) {
-        if (field.canPlantBean(card.getType())) {
-            hand.remove(card);
-            field.addBeanCard(card);
-            System.out.println(name + " planted " + card + " in field " + (fields.indexOf(field) + 1));
-        } else {
-            System.out.println("You cannot plant this bean type in this field.");
-            discardBeanCard(card); 
-        }
+        for(int i=0;i<cardsWithPlayer.size();i++) {
+            if (field.canPlantBean(card.getType())) {
+                cardsWithPlayer.remove(card);
+                field.addBeanCard(card);
+                System.out.println(name + " planted " + card + " in field " + (fields.indexOf(field) + 1));
+            } else {
+                break;
+                //System.out.println("You cannot plant this bean type in this field.");
+                //discardBeanCard(card); 
+            } 
+        }    
     }
 
     public void harvestBeans(Field field) {
